@@ -31,18 +31,25 @@ function MoleContainer() {
   )
 }
 
-function App() {
-  const [score, setScore] = useState(0);
+function App(){
+  let [score, setScore] = useState(0)
 
-  const generateMoleContainers = () => {
-    // #TODO create 9 mole containers
+  const createMoleHill = () => {
+      let hills = []
+      for (let i = 0; i < 9; i++) {
+          hills.push(<MoleContainer key={i} setScore={setScore} score={score} />)
+      }
+  
+      return (<div>{hills}</div>)
   }
 
   return (
-    <div className="App">
-      <MoleContainer />      
-    </div>
-  );
+      <div className="App">
+          <h1>React-a-Mole!</h1>
+          {score}
+          {createMoleHill()}
+      </div>
+  )
 }
 
 export default App;
