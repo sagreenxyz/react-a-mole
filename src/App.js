@@ -6,16 +6,16 @@ import moleHillImage from './assets/images/molehill.png'
 function Mole(props) {
   // #TODO create timer to determine the lifespan of a mole
   // #TODO a useEffect() hook to start timer and clean it up afterward - does this go in the MoleContainer component?
-  return props.displayMole === 'true' ? <img src={moleImage} alt="Mole" /> : <></>
+  return props.displayMole ? <img src={moleImage} alt="Mole" style={{width: '75px'}} /> : <></>
 }
 
 function MoleHill(props) {
   // #TODO a useEffect() hook to start timer and clean it up afterward - does this go in the MoleContainer component?
-  return props.displayMole === 'true' ? <></> : <img src={moleHillImage} alt="Mole" />
+  return props.displayMole ? <></> : <img src={moleHillImage} alt="Mole Hill" style={{width: '75px'}} />
 }
 
 function MoleContainer() {
-  const [displayMole, setDisplayMole] = useState('false')
+  const [displayMole, setDisplayMole] = useState(false)
 
   const handleClick = () => {
     // #TODO increment score by 1 and immediately set the clicked-on mole to no longer display (passing prop to Mole components)
@@ -25,14 +25,16 @@ function MoleContainer() {
 
   return (
     <>
-      <Mole displayMole="false"/>
-      <MoleHill displayMole="false"/>
+      <Mole displayMole={true}/>
+      <MoleHill displayMole={true}/>
     </>
   )
 }
 
 function App(){
   let [score, setScore] = useState(0)
+
+
 
   const createMoleHill = () => {
       let hills = []
