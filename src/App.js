@@ -3,9 +3,9 @@ import { useState } from 'react'
 import moleImage from './assets/images/mole.png'
 import moleHillImage from './assets/images/molehill.png'
 
-function Mole() {
+function Mole(props) {
   // #TODO create timer to determine the lifespan of a mole
-  return <img src={moleImage} alt="Mole" />
+  return props.displayMole === 'true' ? <img src={moleImage} alt="Mole" /> : <></>
 }
 
 function MoleHill() {
@@ -13,10 +13,10 @@ function MoleHill() {
 }
 
 function MoleContainer() {
-  const [displayMole, setDisplayMole] = useState(false)
+  const [displayMole, setDisplayMole] = useState('false')
   return (
     <>
-      <Mole />
+      <Mole displayMole="false"/>
       <MoleHill />
     </>
   )
