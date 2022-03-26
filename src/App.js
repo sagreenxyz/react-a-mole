@@ -4,6 +4,7 @@ import moleImage from './assets/images/mole.png'
 import moleHillImage from './assets/images/molehill.png'
 
 function Mole() {
+  // #TODO create timer to determine the lifespan of a mole
   return <img src={moleImage} alt="Mole" />
 }
 
