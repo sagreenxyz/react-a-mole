@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import moleImage from './assets/images/mole.png'
 import moleHillImage from './assets/images/molehill.png'
@@ -6,11 +6,25 @@ import moleHillImage from './assets/images/molehill.png'
 function Mole(props) {
   // #TODO create timer to determine the lifespan of a mole
   // #TODO a useEffect() hook to start timer and clean it up afterward - does this go in the MoleContainer component?
+  useEffect(() => {
+    let randSeconds = Math.ceil(Math.random() * 2000)
+    let timer = setTimeout(() => {
+      props.setDisplayMole(false)
+    }, randSeconds)
+    return () => clearTimeout(timer)
+  })
   return <img src={moleImage} alt="Mole" style={{width: '75px'}} onClick={props.handleClick} />
 }
 
 function EmptySlot(props) {
   // #TODO a useEffect() hook to start timer and clean it up afterward - does this go in the MoleContainer component?
+  useEffect(() => {
+    let randSeconds = Math.ceil(Math.random() * 10000)
+    let timer = setTimeout(() => {
+      props.setDisplayMole(true)
+    }, randSeconds)
+    return () => clearTimeout(timer)
+  })
   return <img src={moleHillImage} alt="Mole Hill" style={{width: '75px'}} />
 }
 
@@ -23,7 +37,11 @@ function MoleContainer(props) {
   }
 
   const moleOrEmptySlot = () => {
-    return displayMole ? <Mole displayMole={displayMole} handleClick={handleClick}/> : <EmptySlot displayMole={displayMole}/>
+    return (
+      displayMole 
+      ? <Mole displayMole={displayMole} setDisplayMole={setDisplayMole} handleClick={handleClick}/> 
+      : <EmptySlot displayMole={displayMole} setDisplayMole={setDisplayMole}/>
+    )
   }
   return (<>{moleOrEmptySlot()}</>)
 }
