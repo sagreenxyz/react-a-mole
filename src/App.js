@@ -12,7 +12,7 @@ function MoleHill() {
 }
 
 function MoleContainer() {
-
+  const [displayMole, setDisplayMole] = useState(false)
   return (
     <>
       <Mole />
