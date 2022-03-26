@@ -15,19 +15,20 @@ function MoleHill(props) {
 }
 
 function MoleContainer(props) {
-  const [displayMole, setDisplayMole] = useState(false)
+  const [displayMole, setDisplayMole] = useState(true)
 
   const handleClick = () => {
-    // #TODO increment score by 1 and immediately set the clicked-on mole to no longer display (passing prop to Mole components)
     props.setScore(props.score + 1)
+    setDisplayMole(false)
+
   }
 
   // #TODO some logic to determine which child to render - does this go in the return below?
 
   return (
     <>
-      <Mole displayMole={true} handleClick={handleClick}/>
-      <MoleHill displayMole={true}/>
+      <Mole displayMole={displayMole} handleClick={handleClick}/>
+      <MoleHill displayMole={displayMole}/>
     </>
   )
 }
