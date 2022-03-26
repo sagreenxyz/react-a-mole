@@ -8,8 +8,8 @@ function Mole(props) {
   return props.displayMole === 'true' ? <img src={moleImage} alt="Mole" /> : <></>
 }
 
-function MoleHill() {
-  return <img src={moleHillImage} alt="Mole Hill" />
+function MoleHill(props) {
+  return props.displayMole === 'true' ? <></> : <img src={moleHillImage} alt="Mole" />
 }
 
 function MoleContainer() {
@@ -17,7 +17,7 @@ function MoleContainer() {
   return (
     <>
       <Mole displayMole="false"/>
-      <MoleHill />
+      <MoleHill displayMole="false"/>
     </>
   )
 }
