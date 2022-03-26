@@ -9,7 +9,7 @@ function Mole(props) {
   return <img src={moleImage} alt="Mole" style={{width: '75px'}} onClick={props.handleClick} />
 }
 
-function MoleHill(props) {
+function EmptySlot(props) {
   // #TODO a useEffect() hook to start timer and clean it up afterward - does this go in the MoleContainer component?
   return <img src={moleHillImage} alt="Mole Hill" style={{width: '75px'}} />
 }
@@ -22,16 +22,16 @@ function MoleContainer(props) {
     setDisplayMole(false)
   }
 
-  const moleOrMoleHill = () => {
-    return displayMole ? <Mole displayMole={displayMole} handleClick={handleClick}/> : <MoleHill displayMole={displayMole}/>
+  const moleOrEmptySlot = () => {
+    return displayMole ? <Mole displayMole={displayMole} handleClick={handleClick}/> : <EmptySlot displayMole={displayMole}/>
   }
-  return (<>{moleOrMoleHill()}</>)
+  return (<>{moleOrEmptySlot()}</>)
 }
 
 function App(){
   let [score, setScore] = useState(0)
 
-  const createMoleHill = () => {
+  const createEmptySlot = () => {
       let hills = []
       for (let i = 0; i < 9; i++) {
           hills.push(<MoleContainer key={i} setScore={setScore} score={score} />)
@@ -43,7 +43,7 @@ function App(){
       <div className="App">
           <h1>React-a-Mole!</h1>
           {score}
-          {createMoleHill()}
+          {createEmptySlot()}
       </div>
   )
 }
